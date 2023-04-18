@@ -1,0 +1,37 @@
+#include <stdio.h>
+void main()
+{
+    int n;
+    printf("Enter the number of items\n");
+    scanf("%d", &n);
+    int deadL[n], val[n];
+    printf("Enter the deadline and the profit of the items\n");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d %d", &deadL[i], &val[i]);
+    }
+    int maxD = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (deadL[i] > maxD)
+            maxD = deadL[i];
+    }
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (val[j] > val[i])
+            {
+                int temp = val[j];
+                val[j] = val[i];
+                val[i] = temp;
+            }
+        }
+    }
+    int profit = 0;
+    for (int i = 0; i < maxD; i++)
+    {
+        profit += val[i];
+    }
+    printf("Profit earned within %d deadline is %d", maxD, profit);
+}
